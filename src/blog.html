@@ -10,84 +10,105 @@
     content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, frontUser-scalable=0">
   <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
   <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
-  <style>
-    input::-webkit-input-placeholder {
-      text-align: center;
-      color: black;
-    }
 
-    .layui-input-block {
-      width: 568px;
-      border-radius: 6px 0px 0px 6px;
-    }
-
-    .search-btn {
-      border-radius: 0px 6px 6px 0px;
-    }
-
-    .write-btn {
-      border-radius: 6px;
-    }
-
-    .layui-inline {
-      margin: 0;
-    }
-
-    .card-header div {
-      text-align: center;
-      height: 46px;
-      line-height: 150%;
-    }
-
-    .card-header button {
-      width: 111px;
-      font-size: 14px;
-    }
-
-    .card-content {
-      width: 921px;
-      height: auto;
-      color: rgba(80, 80, 80, 1);
-      background-color: rgba(250, 250, 250, 1);
-      border-radius: 6px;
-      font-size: 14px;
-      line-height: 150%;
-      border: rgba(229, 229, 229, 1) solid 1px;
-      text-align: center;
-    }
-
-  </style>
 </head>
 
 <body>
   <div>
-    <!-- 头部搜索框等一栏 -->
-    <div class="card-header" style="margin-top:27px;">
-      <div class="head-search">
-        <div class="layui-inline">
-          <div class="layui-input-block">
-            <input id="search" name="search" placeholder="搜索标题/作者/..." autocomplete="off" class="layui-input">
-          </div>
-        </div>
-        <div class="layui-inline">
-          <button class="layui-btn layui-btn-normal search-btn" lay-submit lay-filter="search">
-            <i class="layui-icon layui-icon-search layuiadmin-button-btn">&nbsp;&nbsp;&nbsp;&nbsp;搜索</i>
-          </button>
-        </div>
+    <div class="blog-bar">
+      <div class="layui-inline">
+        <i class="layui-icon layui-icon-username">&nbsp;张三</i>
       </div>
-      <div class="head-write">
-        <button class="layui-btn layui-btn-normal write-btn" lay-submit lay-filter="write">
-          <i class="layui-icon layui-icon-edit layuiadmin-button-btn">&nbsp;&nbsp;&nbsp;&nbsp;写文章</i>
-        </button>
+      <div class="layui-inline" style="position: absolute;left: 100px;">
+        <i class="layui-icon layui-icon-date">&nbsp;2020/10/10</i>
+      </div>
+      <div class="layui-inline" style="position: absolute;left: 220px;">
+        <i class="layui-icon layui-icon-read">&nbsp;300次阅读</i>
+      </div>
+      <div class="layui-inline praise" style="position: absolute;left: 320px;">
+        <i class="layui-icon layui-icon-praise" style="font-size: 14px;color: rgba(250, 138, 25, 1);">&nbsp;10</i>
       </div>
     </div>
-    <!-- 主体内容 -->
-    <div class="card-content" style="margin-top:14px;">
-      <div class="content-bar">
-
-      </div>
+    <div class="blog-content">
+      <h1>标题</h1>
+      <p>正文</p>
     </div>
   </div>
 </body>
+<script src="../../layuiadmin/layui/layui.js"></script>
+<script>
+  layui
+    .config({
+      base: "../../layuiadmin/", //静态资源所在路径
+    })
+    .extend({
+      index: "lib/index", //主入口模块
+    })
+    .use(['element', 'index'], function () {
+      var element = layui.element;
+    })
+
+</script>
+<style>
+  body {
+    overflow-x: hidden;
+  }
+
+  .blog-bar {
+    position: relative;
+    left: 50px;
+    top: 30px;
+  }
+
+  .blog-bar i {
+    color: rgba(133, 144, 166, 1);
+    font-size: 12px;
+    text-align: left;
+  }
+
+  .praise {
+    width: 66px;
+    color: rgba(80, 80, 80, 1);
+    background-color: rgba(250, 138, 25, 0.128);
+    border-radius: 6px;
+    text-align: center;
+  }
+
+  .blog-content {
+    width: 920px;
+    height: 400px;
+    position: relative;
+    left: 40px;
+    top: 50px;
+    padding-bottom: 100px;
+    color: rgba(80, 80, 80, 1);
+    background-color: rgba(250, 250, 250, 1);
+    border-radius: 6px;
+    font-size: 14px;
+    line-height: 150%;
+    border: rgba(229, 229, 229, 1) solid 1px;
+    box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.5);
+    text-align: left;
+  }
+
+  h1 {
+    position: relative;
+    top: 40px;
+    left: 40px;
+    max-width: 800px;
+    line-height: 120%;
+    font-weight: bolder;
+    padding-bottom: 20px;
+    border-bottom: rgba(200, 200, 200, 1) solid 1px;
+  }
+
+  p {
+    position: relative;
+    top: 60px;
+    left: 40px;
+    max-width: 800px;
+    text-align: justify;
+  }
+</style>
 
 </html>
