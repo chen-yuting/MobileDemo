@@ -11,6 +11,8 @@ const userSchema = new Schema({
     password: String,
     createAt: { type: Date, default: Date.now() },
     lastLoginAt: { type: Date, default: Date.now() }
+}, {
+    collection: 'user'
 })
 //在保存数据之前对密码进行加密
 userSchema.pre('save', function (next) {
@@ -28,7 +30,20 @@ userSchema.pre('save', function (next) {
         }
     })
 })
-
+//schema的实例方法
+userSchema.methods = {
+    comparePassword:(_password, password) => {
+        return new Promise((resolve, reject) => {
+            bcrypt.compare(_password, password, (err, isMatch) => {
+                if (!err) {
+                    resolve(isMatch)
+                }else{
+                    reject(err)
+                }
+            })
+        })
+    }
+}
 //发布模型
 //User:数据库表名
 mongoose.model('User', userSchema)

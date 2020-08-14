@@ -117,7 +117,7 @@ export default {
       method: "get",
     })
       .then((response) => {
-        console.log(response);
+        console.log('首页数据:',response);
         if (response.status == 200) {
           this.category = response.data.data.category; //获得商品类别
           this.adBanner = response.data.data.advertesPicture.PICTURE_ADDRESS; //获得广告图片

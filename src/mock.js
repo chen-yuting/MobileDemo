@@ -1,5 +1,5 @@
 var Mock = require('mockjs')
-Mock.mock('http://localhost:333/index', {
+Mock.mock('http://localhost:3333/index', {
   "data": {
     "advertesPicture": {
       "PICTURE_ADDRESS": "http://images.baixingliangfan.cn/advertesPicture/20180404/20180404085441_850.gif"

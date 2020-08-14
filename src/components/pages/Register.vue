@@ -9,39 +9,109 @@
         placeholder="请输入用户名"
         required
         @click-icon="username = ''"
+        :error-message="usernameErrorMsg"
       />
-      <van-field v-model="password" type="password" label="密码" placeholder="请输入密码" required />
+      <van-field
+        v-model="password"
+        type="password"
+        label="密码"
+        placeholder="请输入密码"
+        required
+        :error-message="passwordErrorMsg"
+      />
       <div class="register-button">
-        <van-button type="primary" size="large">马上注册</van-button>
+        <van-button
+          type="primary"
+          size="large"
+          @click="registerAction()"
+          :loading="openLoading"
+        >马上注册</van-button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+import url from "@/serviceAPI.config.js";
+import { Toast } from "vant";
 export default {
   data() {
     return {
       username: "",
       password: "",
+      openLoading: false, //是否开启用户注册的按钮,false时一直转圈
+      usernameErrorMsg: "", //当用户名出现错误时的提示信息
+      passwordErrorMsg: "", //当密码出现错误时的提示信息
     };
   },
   methods: {
+    //返回
     goBack() {
       this.$router.go(-1);
+    },
+    //注册用户行为
+    registerAction() {
+      this.checkForm() && this.axiosRegisterUser();
+    },
+    //注册用户
+    axiosRegisterUser() {
+      this.openLoading = true;
+      axios({
+        url: url.registerUser,
+        method: "post",
+        data: {
+          userName: this.username,
+          password: this.password,
+        },
+      })
+        .then((response) => {
+          console.log('注册信息:',response);
+          //若成功请求并返回
+          if (response.data.code == 200) {
+            Toast.success(response.data.message);
+            this.$router.push("/");
+          } else {
+            console.log(response.data.message);
+            this.openLoading = false;
+            Toast.fail("注册失败");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          this.openLoading = false;
+          Toast.fail("注册失败");
+        });
+    },
+    //表单验证方法
+    checkForm() {
+      let isOk = true;
+      if (this.username.length < 5) {
+        this.usernameErrorMsg = "用户名不能少于5位";
+        isOk = false;
+      } else {
+        this.usernameErrorMsg = "";
+      }
+      if (this.password.length < 6) {
+        this.passwordErrorMsg = "密码不能少于6位";
+        isOk = false;
+      } else {
+        this.passwordErrorMsg = "";
+      }
+      return isOk;
     },
   },
 };
 </script>
 
 <style scoped>
-.register-panel{
-    width: 95%;
-    border-radius: 5px;
-    margin: 20px auto;
-    padding-bottom: 80px;
+.register-panel {
+  width: 95%;
+  border-radius: 5px;
+  margin: 20px auto;
+  padding-bottom: 80px;
 }
-.register-button{
-    padding-top: 10px;
+.register-button {
+  padding-top: 10px;
 }
 </style>
