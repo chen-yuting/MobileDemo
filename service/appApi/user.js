@@ -26,6 +26,7 @@ router.post('/register', async (ctx) => {
     })
 })
 
+//得到用户登录post的提交内容
 router.post('/login', async (ctx) => {
     let loginUser = ctx.request.body
     console.log(loginUser)
