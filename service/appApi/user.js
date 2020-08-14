@@ -1,6 +1,6 @@
 const Router = require('koa-router')
 const mongoose = require('mongoose')
-require('../schema/User.js')  //要用mongoose.model就得引入
+require('../database/schema/User.js')  //要用mongoose.model就得引入
 
 let router = new Router
 router.get('/', async (ctx) => {
