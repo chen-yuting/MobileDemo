@@ -5,4 +5,4 @@ router.get('/',async(ctx)=>{
     ctx.body="这是首页接口"
 })
 
-module.exports = router.routes()
+module.exports = router

@@ -2,7 +2,6 @@ const Koa = require('koa')
 const { connect, initSchemas } = require('./database/init.js')
 const app = new Koa()
 const mongoose = require('mongoose')
-require('./schema/User.js')
 
 const bodyParser = require('koa-bodyparser')
 const cors = require('koa2-cors')
@@ -14,11 +13,13 @@ app.use(cors())   //前端与后端的跨域
 
 let user = require('./appApi/user.js')
 let home = require('./appApi/home.js')
+let goods = require('./appApi/goods.js')
 
 //装载所有子路由
 let router = new Router();
-router.use('/user', user)
-router.use('/home', home)
+router.use('/user', user.routes())
+router.use('/home', home.routes())
+router.use('/goods', goods.routes())
 
 //加载路由中间件
 
@@ -26,23 +27,9 @@ app.use(router.routes())
 app.use(router.allowedMethods())
 
 
-
 //立即执行函数
 ; (async () => {
   await connect()
-
-  // const User = mongoose.model('User')
-  // //插入
-  // let oneUser = new User({ userName: 'cyt0', password: '123456' })
-  // oneUser.save().then(() => {
-  //   console.log('插入成功')
-  // })
-  // //查询
-  // let users = await User.find({}).exec()
-  // console.log('-------------')
-  // console.log(users)
-  // console.log('-------------')
-
 })()
 
 app.use(async (ctx) => {
