@@ -2,6 +2,7 @@ const Router = require('koa-router')
 const mongoose = require('mongoose')
 require('../database/schema/Goods.js')
 require('../database/schema/Category.js')
+require('../database/schema/CategorySub.js')
 const fs = require('fs')
 const { data } = require('autoprefixer')
 
@@ -44,6 +45,28 @@ router.get('/insertAllCategory', async (ctx) => {
                 console.log('插入<商品大类>成功', saveCount)
             }).catch(error => {
                 console.log('插入<商品大类>失败', error)
+            })
+        })
+    })
+
+    ctx.body = "开始导入数据"
+})
+
+//插入商品子类
+router.get('/insertAllCategorySub', async (ctx) => {
+    fs.readFile('./data_json/category_sub.json', 'utf8', (err, data) => {
+        data = JSON.parse(data)
+        let saveCount = 0
+        const CategorySub = mongoose.model('CategorySub')
+        data.RECORDS.map((value, index) => {
+            //逐条插入
+            console.log(value)
+            let newCategorySub = new CategorySub(value)
+            newCategorySub.save().then(() => {
+                saveCount++
+                console.log('插入<商品子类>成功', saveCount)
+            }).catch(error => {
+                console.log('插入<商品子类>失败', error)
             })
         })
     })
