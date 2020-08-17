@@ -1,114 +1,99 @@
-<!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <script type="text/javascript" src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
+        <style type="text/css">
+            .second {
+                position: relative;
+                margin: 100px 100px;
+            }
+            
+            .second select {
+                width: 100px;
+                margin: 0px;
+                outline: none;
+                border: 1px solid #999;
+                position: absolute;
+                top: 34px;
+                left: 0px;
+                z-index: 1;
+                border-radius: 2px;
+            }
+            
+            .second select option {
+                padding: 5px 5px;
+            }
+            
+            .second select option:hover {
+                background-color: #c8cbce;
+                border-radius: 2px;
+            }
+            
+            .second input {
+                width: 100px;
+                outline: none;
+                border: 0px;
+                line-height: 30px;
+                height: 30px;
+                border: 1px solid #999;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="second">
+            <input type="text" name="makeupCo" id="makeupCo" class="makeinp" onfocus="setfocus(this)" oninput="setinput(this);" placeholder="请选择或输入" />
+            <select name="makeupCoSe" id="typenum" onchange="changeF(this)" style="display:none;"></select>
+        </div>
+        <script type="text/javascript">
+            var TempArr = ["1", "12", "123", "1234", "12345", "123456", "1234567", "1234567", "1234567", "1234567", "1234567", "1234567", "1234567"];
+            $(function() {
+                $(document).bind('click', function(e) {
+                    var e = e || window.event;
+                    var elem = e.target || e.srcElement;
+                    while (elem) {
+                        if (elem.id && (elem.id == 'typenum' || elem.id == "makeupCo")) {
+                            return;
+                        }
+                        elem = elem.parentNode;
+                    }
+                    $('#typenum').css('display', 'none');
+                });
+            })
 
-<head>
-  <meta charset="utf-8">
-  <title>blog</title>
-  <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport"
-    content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, frontUser-scalable=0">
-  <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
-  <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+            function changeF(this_) {
+                $(this_).prev("input").val($(this_).find("option:selected").text());
+                $("#typenum").css({
+                    "display": "none"
+                });
+            }
 
-</head>
+            function setfocus(this_) {
+                $("#typenum").css({
+                    "display": "",
+                    "width":"20px",
 
-<body>
-  <div>
-    <div class="blog-bar">
-      <div class="layui-inline">
-        <i class="layui-icon layui-icon-username">&nbsp;张三</i>
-      </div>
-      <div class="layui-inline" style="position: absolute;left: 100px;">
-        <i class="layui-icon layui-icon-date">&nbsp;2020/10/10</i>
-      </div>
-      <div class="layui-inline" style="position: absolute;left: 220px;">
-        <i class="layui-icon layui-icon-read">&nbsp;300次阅读</i>
-      </div>
-      <div class="layui-inline praise" style="position: absolute;left: 320px;">
-        <i class="layui-icon layui-icon-praise" style="font-size: 14px;color: rgba(250, 138, 25, 1);">&nbsp;10</i>
-      </div>
-    </div>
-    <div class="blog-content">
-      <h1>标题</h1>
-      <p>正文</p>
-    </div>
-  </div>
-</body>
-<script src="../../layuiadmin/layui/layui.js"></script>
-<script>
-  layui
-    .config({
-      base: "../../layuiadmin/", //静态资源所在路径
-    })
-    .extend({
-      index: "lib/index", //主入口模块
-    })
-    .use(['element', 'index'], function () {
-      var element = layui.element;
-    })
+                });
+                var select = $("#typenum");
+                select.empty();
+                if (select) {
+                    $("#typenum").attr("size", TempArr.length);
+                    for (i = 0; i < TempArr.length; i++) {
+                        var option = new Option(TempArr[i], TempArr[i]);
+                        select.append(option);
+                    }
+                }
+            }
 
-</script>
-<style>
-  body {
-    overflow-x: hidden;
-  }
-
-  .blog-bar {
-    position: relative;
-    left: 50px;
-    top: 30px;
-  }
-
-  .blog-bar i {
-    color: rgba(133, 144, 166, 1);
-    font-size: 12px;
-    text-align: left;
-  }
-
-  .praise {
-    width: 66px;
-    color: rgba(80, 80, 80, 1);
-    background-color: rgba(250, 138, 25, 0.128);
-    border-radius: 6px;
-    text-align: center;
-  }
-
-  .blog-content {
-    width: 920px;
-    height: 400px;
-    position: relative;
-    left: 40px;
-    top: 50px;
-    padding-bottom: 100px;
-    color: rgba(80, 80, 80, 1);
-    background-color: rgba(250, 250, 250, 1);
-    border-radius: 6px;
-    font-size: 14px;
-    line-height: 150%;
-    border: rgba(229, 229, 229, 1) solid 1px;
-    box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.5);
-    text-align: left;
-  }
-
-  h1 {
-    position: relative;
-    top: 40px;
-    left: 40px;
-    max-width: 800px;
-    line-height: 120%;
-    font-weight: bolder;
-    padding-bottom: 20px;
-    border-bottom: rgba(200, 200, 200, 1) solid 1px;
-  }
-
-  p {
-    position: relative;
-    top: 60px;
-    left: 40px;
-    max-width: 800px;
-    text-align: justify;
-  }
-</style>
-
-</html>
+            function setinput(this_) {
+                var select = $("#typenum");
+                select.html("");
+                for (i = 0; i < TempArr.length; i++) {
+                    if (TempArr[i].indexOf(this_.value) >= 0) {
+                        var option = new Option(TempArr[i], TempArr[i]);
+                        select.append(option);
+                    }
+                }
+            }
+        </script>
+    </body>
+    </html>
