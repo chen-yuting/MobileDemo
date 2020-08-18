@@ -176,10 +176,7 @@ export default {
   padding: 0.3rem;
   font-size: 12px;
   text-align: center;
-}
-.type-bar img {
-  width: 3rem;
-  height: 3rem;
+  flex: 1;
 }
 .recommend-area {
   background-color: #fff;

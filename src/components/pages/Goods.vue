@@ -48,7 +48,9 @@ export default {
   },
   created() {
     //接受首页点击某个商品传递过来的goodsId
-    this.goodsId = this.$route.query.goodsId;
+    this.goodsId = this.$route.query.goodsId
+      ? this.$route.query.goodsId
+      : this.$route.params.goodsId;
     this.getInfo();
   },
   methods: {
@@ -95,7 +97,7 @@ export default {
   flex-direction: row;
   flex-flow: nowrap;
 }
-.goods-bottom > div{
+.goods-bottom > div {
   flex: 1;
   padding: 3px;
 }

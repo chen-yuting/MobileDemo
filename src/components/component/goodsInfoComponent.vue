@@ -1,5 +1,5 @@
 <template>
-  <div class="goods-info" @click="goGoodsPage()">
+  <div class="goods-info" @click="goGoodsInfo()">
     <div class="goods-image">
       <img v-lazy="goodsImage" width="90%" />
     </div>
@@ -18,7 +18,7 @@ export default {
     },
   },
   methods: {
-    goGoodsPage() {
+    goGoodsInfo() {
       //向详情页面传递goodsId参数
       this.$router.push({ name: "Goods", query: { goodsId: this.goodsId } });
     },

@@ -85,32 +85,22 @@ Mock.mock('http://localhost:3333/index', {
       "image": "http://images.baixingliangfan.cn/firstCategoryPicture/20180408/20180408111959_2837.png"
     }, {
       "mallCategoryId": "2",
-      "mallCategoryName": "中外名酒",
+      "mallCategoryName": "熟食食品",
       "bxMallSubDto": [{
         "mallSubId": "2c9f6c9460337d540160337fefd60000",
         "mallCategoryId": "2",
-        "mallSubName": "白酒",
+        "mallSubName": "海鲜",
         "comments": ""
       }, {
         "mallSubId": "402880e86016d1b5016016e083f10010",
         "mallCategoryId": "2",
-        "mallSubName": "啤酒",
+        "mallSubName": "火锅料",
         "comments": ""
       }, {
         "mallSubId": "402880e86016d1b5016016df1f92000c",
         "mallCategoryId": "2",
-        "mallSubName": "葡萄酒",
+        "mallSubName": "速食食品",
         "comments": ""
-      }, {
-        "mallSubId": "2c9f6c94621970a801626a40feac0178",
-        "mallCategoryId": "2",
-        "mallSubName": "洋酒",
-        "comments": null
-      }, {
-        "mallSubId": "2c9f6c94621970a801626a412c240179",
-        "mallCategoryId": "2",
-        "mallSubName": "海外直采",
-        "comments": null
       }],
       "comments": null,
       "image": "http://images.baixingliangfan.cn/firstCategoryPicture/20180408/20180408112010_4489.png"
