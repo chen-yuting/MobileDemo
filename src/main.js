@@ -15,7 +15,7 @@ require('./mock.js')
 // Vue.use(Vant)
 
 // 按需引入
-import { Button, Row, Col, Swipe, SwipeItem, Lazyload, List, Field, NavBar, Tab, Tabs, PullRefresh, Stepper } from 'vant'
+import { Button, Row, Col, Swipe, SwipeItem, Lazyload, List, Field, NavBar, Tab, Tabs, PullRefresh, Stepper, Tabbar, TabbarItem, Cell, CellGroup } from 'vant'
 Vue.use(Button).use(Row).use(Col)
   .use(Swipe).use(SwipeItem)
   .use(Lazyload).use(List)
@@ -23,6 +23,8 @@ Vue.use(Button).use(Row).use(Col)
   .use(Tab).use(Tabs)
   .use(PullRefresh)
   .use(Stepper)
+  .use(Tabbar).use(TabbarItem)
+  .use(Cell).use(CellGroup)
 
 Vue.config.productionTip = false
 

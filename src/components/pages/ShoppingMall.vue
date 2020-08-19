@@ -64,7 +64,12 @@
         <van-list>
           <van-row gutter="20">
             <van-col span="12" v-for="(item,index) in hotGoods" :key="index">
-              <goodsInfoComponent :goodsImage="item.image" :goodsName="item.name" :goodsPrice="item.mallPrice" :goodsId="item.goodsId"></goodsInfoComponent>
+              <goodsInfoComponent
+                :goodsImage="item.image"
+                :goodsName="item.name"
+                :goodsPrice="item.mallPrice"
+                :goodsId="item.goodsId"
+              ></goodsInfoComponent>
             </van-col>
           </van-row>
         </van-list>
@@ -80,7 +85,7 @@ import { swiper, swiperSlide } from "vue-awesome-swiper";
 import floorComponent from "../component/floorComponent";
 import goodsInfoComponent from "../component/goodsInfoComponent";
 import { toMoney } from "@/filter/moneyFilter.js";
-import url from '@/serviceAPI.config.js'
+import url from "@/serviceAPI.config.js";
 export default {
   data() {
     return {
@@ -97,7 +102,7 @@ export default {
       floor2: [],
       floor3: [],
       floorName: {},
-      hotGoods:[],
+      hotGoods: [],
     };
   },
   filters: {
@@ -109,7 +114,7 @@ export default {
     swiper,
     swiperSlide,
     floorComponent,
-    goodsInfoComponent
+    goodsInfoComponent,
   },
   created() {
     axios({
@@ -117,7 +122,7 @@ export default {
       method: "get",
     })
       .then((response) => {
-        console.log('首页数据:',response);
+        console.log("首页数据:", response);
         if (response.status == 200) {
           this.category = response.data.data.category; //获得商品类别
           this.adBanner = response.data.data.advertesPicture.PICTURE_ADDRESS; //获得广告图片
@@ -159,7 +164,7 @@ export default {
   padding-left: 0.3rem;
 }
 .swipe-area {
-  max-height: 12rem;
+  max-height: 9rem;
   clear: both;
   overflow: hidden;
 }
@@ -202,5 +207,10 @@ export default {
   font-size: 14px;
   height: 1.8rem;
   line-height: 1.8rem;
+}
+.hot-goods {
+  height: 130rem;
+  overflow: hidden;
+  background-color: #fff;
 }
 </style>

@@ -90,8 +90,10 @@ export default {
   //DOM加载之后
   mounted() {
     let winHeight = document.documentElement.clientHeight;
-    document.getElementById("leftNav").style.height = winHeight - 46 + "px";
-    document.getElementById("list-div").style.height = winHeight - 90 + "px";
+    document.getElementById("leftNav").style.height =
+      winHeight - 46 - 48 + "px";
+    document.getElementById("list-div").style.height =
+      winHeight - 90 - 48 + "px";
   },
 
   methods: {

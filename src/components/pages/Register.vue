@@ -70,7 +70,7 @@ export default {
           //若成功请求并返回
           if (response.data.code == 200) {
             Toast.success(response.data.message);
-            this.$router.push("/");
+            this.$router.push("/Member");
           } else {
             console.log(response.data.message);
             this.openLoading = false;

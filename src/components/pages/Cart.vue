@@ -4,7 +4,7 @@
       <van-nav-bar title="购物车" />
     </div>
     <div class="card-title">
-      <van-button size="small" type="danger" @click="clearCart()" plain>清空购物车</van-button>
+      <van-button size="small" type="danger" @click="clearCart()">清空购物车</van-button>
     </div>
 
     <!-- 显示购物车中的商品 -->
@@ -29,6 +29,9 @@
 
     <!-- 显示总金额 -->
     <div class="total-money">商品总价：￥{{totalMoney | moneyFilter}}</div>
+    <div class="card-foot">
+      <van-button size="normal" type="danger">结算</van-button>
+    </div>
   </div>
 </template>
 
@@ -118,7 +121,12 @@ export default {
 .total-money {
   text-align: right;
   background-color: #fff;
-  border-bottom: 1px solid #e4e7ed;
+  padding: 10px;
+}
+.card-foot {
+  line-height: 2rem;
+  background-color: #fff;
   padding: 5px;
+  text-align: right;
 }
 </style>

@@ -43,7 +43,7 @@ export default {
   created () {
     if(localStorage.userInfo){
       Toast.success('您已经登录');
-      this.$router.push('/');
+      this.$router.push('/main');
     }
   },
   methods: {
@@ -51,11 +51,11 @@ export default {
     goBack() {
       this.$router.go(-1);
     },
-    //注册用户行为
+    //用户登录行为
     loginAction() {
       this.checkForm() && this.axiosLoginUser();
     },
-    //注册用户
+    //用户登录
     axiosLoginUser() {
       this.openLoading = true;
       axios({
@@ -79,7 +79,7 @@ export default {
             })
               .then(() => {
                 Toast.success("登录成功");
-                this.$router.push("/");
+                this.$router.push("/main");
               })
               .catch((err) => {
                 Toast.fail("登录状态保存失败");
